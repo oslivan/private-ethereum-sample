@@ -1,0 +1,18 @@
+version: '3'
+services:
+  master:
+    build:
+      context: .
+      dockerfile: ./master/Dockerfile
+    container_name: geth.master
+    ports:
+      - 18545:8545
+  slave:
+    build:
+      context: .
+      dockerfile: ./slave/Dockerfile
+    container_name: geth.slave
+    ports:
+      - 18546:8545
+    depends_on:
+      - master
